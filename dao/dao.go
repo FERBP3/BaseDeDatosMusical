@@ -25,7 +25,7 @@ func InsertaPerformer(rola *modelos.Rola) (int64,error) {
         if errId != nil {
             return id_performer, err
         }
-        fmt.Printf("Se agregó el intérprete %+v a la base de datos con %v como ID\n", rola.Interprete, id_performer)
+        //fmt.Printf("Se agregó el intérprete %+v a la base de datos con %v como ID\n", rola.Interprete, id_performer)
         return id_performer,nil
     } else if err == nil {
         row = database.QueryRow(Util.SeleccionaPerformer, rola.Interprete)
@@ -53,7 +53,7 @@ func InsertaAlbum(rola *modelos.Rola) (int64, error) {
         if err != nil {
             return id_album, err
         }
-        fmt.Printf("Se agregó el album %+v a la base de datos con %v como ID\n", rola.Album, id_album)
+        //fmt.Printf("Se agregó el album %+v a la base de datos con %v como ID\n", rola.Album, id_album)
         return id_album,nil
     } else if err == nil {
         row = database.QueryRow(Util.SeleccionaAlbum, rola.Album)
@@ -77,7 +77,7 @@ func InsertaRola(rola *modelos.Rola, id_performer int64, id_album int64) (error)
         if err != nil {
             return err
         }
-        fmt.Printf("Se agregó la rola %+v a la base de datos\n",rola.Titulo)
+            //fmt.Printf("Se agregó la rola %+v a la base de datos\n",rola.Titulo)
     }
     return nil
 }

@@ -6,7 +6,7 @@ import (
 	"github.com/gotk3/gotk3/glib"
     "github.com/FERBP3/BaseDeDatosMusical/compilador"
      "github.com/FERBP3/BaseDeDatosMusical/dao"
-	"fmt"
+	//"fmt"
 )
 
 const (

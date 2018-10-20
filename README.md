@@ -57,6 +57,14 @@ I:Nightwish
 ```
 Sólo puede buscar una categoría cada vez.
 Cualquier cadena que no reconozca automáticamente mostrará todas las rolas.
+
+### DETALLES
+La carpeta donde se leerán los archivos MP3 por omisión es 
+```
+~/Music.  
+```
+Al definir un interprete como persona se debe poner en el campo StageName el nombre del campo artista de la rola que está seleccionada en la vista. Lo mismo para definir como grupo, se debe poner en el campo Name el nombre del campo Artista de la rola que está seleccionada.
+
 ## Autor
 * Brigido Pablo José Fernando
 * 314146171
