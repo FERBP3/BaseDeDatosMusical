@@ -11,8 +11,8 @@ import(
 	"log"
 )
 
-//const MusicDir = "/Music"
-const MusicDir = "/Música/Test2"
+const MusicDir = "/Music"
+//const MusicDir = "/Música/Test2"
 
 func main(){
 

@@ -43,3 +43,7 @@ Después lo ejecutamos (de igual forma estando en $GOPATH):
 ```
 $./bin/vista
 ```
+
+## Autor
+* Brigido Pablo José Fernando
+* 314146171
