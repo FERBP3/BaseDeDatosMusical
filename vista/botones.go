@@ -14,7 +14,7 @@ func NuevoBotonNoGuardaCambios(etiqueta string, dialog *gtk.Dialog)  (*gtk.Butto
 		log.Fatal("No se pudo crear el boton Guardar cambios : ", err)
 	}
 	boton.Connect("clicked", func() {
-		fmt.Println("NO se guardaron los cambios de: ",etiqueta)
+		//fmt.Println("NO se guardaron los cambios de: ",etiqueta)
 		dialog.Destroy()
 		})
 	return boton
@@ -86,7 +86,7 @@ func NuevoButonGuardaCambios(etiqueta string, dialog *gtk.Dialog) (*gtk.Button) 
 		log.Fatal("No se pudo crear el boton Guardar cambios : ", err)
 	}
 	boton.Connect("clicked", func() {
-		fmt.Println("Se guardaron los cambios de: ",etiqueta)
+		//fmt.Println("Se guardaron los cambios de: ",etiqueta)
 		dialog.Destroy()
 		})
 	return boton

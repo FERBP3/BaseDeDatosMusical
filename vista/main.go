@@ -6,7 +6,7 @@ import (
 	"github.com/gotk3/gotk3/glib"
 	"os"
     "github.com/FERBP3/BaseDeDatosMusical/dao"
-    "fmt"
+    //"fmt"
 )
 
 func main() {
@@ -58,8 +58,8 @@ func onActivate(aplicacion *gtk.Application) {
 	editaInterprete := glib.SimpleActionNew("editaInterprete", nil)
 	editaInterprete.Connect("activate", func() {
 		tipo := dao.GetTypePerformer(getRolaFromView(view))
-		fmt.Println(getRolaFromView(view))
-		fmt.Println(tipo)
+		//fmt.Println(getRolaFromView(view))
+		//fmt.Println(tipo)
 		NuevaVentanaEditaInterprete(view, tipo )
 	})
 	aplicacion.AddAction(editaInterprete)

@@ -125,7 +125,6 @@ func InsertaGrupo(grupo *modelos.Group, rola *modelos.Rola) {
     if err != nil {
     	fmt.Println(err)
     }
-
 }
 
 func GetAllRolas() ([]*modelos.Rola) {
@@ -280,7 +279,4 @@ func Ejecuta(consulta string) ([]*modelos.Rola) {
         rolas = append(rolas, rola)
     }
     return rolas
-
-    //var rolas []*modelos.Rola
-    //return rolas
 }
