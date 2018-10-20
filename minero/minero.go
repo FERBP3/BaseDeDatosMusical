@@ -4,7 +4,6 @@ import(
   "github.com/FERBP3/ReproductorMP3/modelos"
   "github.com/FERBP3/ReproductorMP3/dao"
   "github.com/bogem/id3v2"
-  rbt "github.com/emirpasic/gods/trees/redblacktree"
   "path/filepath"
   "os/user"
   "os"
@@ -12,17 +11,18 @@ import(
 	"log"
 )
 
+//const MusicDir = "/Music"
 const MusicDir = "/Música/Test2"
 
 func main(){
 
-  arbol, err := Recorre("")
+  rutas, err := Recorre("")
   if err != nil {
     log.Fatal(err)
   }
-  fmt.Printf("%v rutas por leer\n",arbol.Size())
+  fmt.Printf("%v rutas por leer\n", len(rutas))
 
-  rolas := CreaRolas(arbol)
+  rolas := CreaRolas(rutas)
   fmt.Println(len(rolas)," mp3 leídos correctamente")
 
    var id_performer int64
@@ -46,19 +46,15 @@ func main(){
        }
    }
 
-    //rolas = dao.GetRolas()
-    //for _,rola := range rolas {
-        //fmt.Println(rola.Titulo, rola.Interprete, rola.Album, rola.Genero)
-    //}
 }
 
-func Recorre(directorio string) (*rbt.Tree, error) {
+func Recorre(directorio string) ([]string, error) {
   if directorio == ""{
     directorio, _ = GetDirMusic()
   }
-  arbol := rbt.NewWithStringComparator()
-  err := filepath.Walk(directorio, Agrega(arbol))
-  return arbol,err  
+  var rutas []string
+  err := filepath.Walk(directorio, Agrega(&rutas))
+  return rutas,err  
 }
 
 func GetDirMusic() (string, error){
@@ -71,7 +67,7 @@ func GetDirMusic() (string, error){
     return rutaMusic,err
 }
 
-func Agrega(arbol *rbt.Tree) filepath.WalkFunc {
+func Agrega(rutas *[]string) filepath.WalkFunc {
   return func (path string, info os.FileInfo, err error) error {
     if err != nil {
       log.Fatal(err)
@@ -79,20 +75,17 @@ func Agrega(arbol *rbt.Tree) filepath.WalkFunc {
     if filepath.Ext(path) != ".mp3"{
       return nil
     }
-    arbol.Put(path,0)
+    *rutas = append(*rutas,path)
     return nil
   }
 }
 
-func CreaRolas(arbol *rbt.Tree) ([]*modelos.Rola){
+func CreaRolas(rutas []string) ([]*modelos.Rola){
     var rolas []*modelos.Rola
     var rola *modelos.Rola
-    var ruta string
     var tag *id3v2.Tag
     var err error
-    iterador := arbol.Iterator()
-    for iterador.Next() {  
-    ruta = iterador.Key().(string)  
+    for _, ruta := range rutas {
     tag, err = id3v2.Open(ruta, id3v2.Options{Parse:true})
     if err != nil{
         fmt.Println("Error al leer archivo mp3 "+ruta, err)
