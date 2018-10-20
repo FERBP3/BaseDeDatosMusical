@@ -2,7 +2,7 @@ package main
 
 import (
 	"github.com/gotk3/gotk3/gtk"
-	"github.com/FERBP3/ReproductorMP3/modelos"
+	"github.com/FERBP3/BaseDeDatosMusical/modelos"
 )
 
 type View struct {

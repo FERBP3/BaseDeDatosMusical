@@ -3,8 +3,8 @@ package main
 import(
 	"log"
 	"github.com/gotk3/gotk3/gtk"
-  "github.com/FERBP3/ReproductorMP3/dao"
- 	"github.com/FERBP3/ReproductorMP3/modelos"
+  "github.com/FERBP3/BaseDeDatosMusical/dao"
+ 	"github.com/FERBP3/BaseDeDatosMusical/modelos"
 	"fmt"
 )
 

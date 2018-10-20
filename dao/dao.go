@@ -3,8 +3,8 @@ package dao
 import(
     "database/sql"
     _ "github.com/mattn/go-sqlite3"
-	"github.com/FERBP3/ReproductorMP3/modelos"
-    "github.com/FERBP3/ReproductorMP3/Util"
+	"github.com/FERBP3/BaseDeDatosMusical/modelos"
+    "github.com/FERBP3/BaseDeDatosMusical/Util"
     "fmt"
 )
 

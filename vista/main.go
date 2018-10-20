@@ -5,7 +5,7 @@ import (
 	"github.com/gotk3/gotk3/gtk"
 	"github.com/gotk3/gotk3/glib"
 	"os"
-    "github.com/FERBP3/ReproductorMP3/dao"
+    "github.com/FERBP3/BaseDeDatosMusical/dao"
     "fmt"
 )
 

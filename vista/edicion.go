@@ -2,8 +2,8 @@ package main
 
 import (
 	"github.com/gotk3/gotk3/gtk"
-	"github.com/FERBP3/ReproductorMP3/modelos"
-    "github.com/FERBP3/ReproductorMP3/dao"
+	"github.com/FERBP3/BaseDeDatosMusical/modelos"
+    "github.com/FERBP3/BaseDeDatosMusical/dao"
 )
 
 func camposPersona(view *View, esNueva bool) (*gtk.ListBox, *EntradaPersona){

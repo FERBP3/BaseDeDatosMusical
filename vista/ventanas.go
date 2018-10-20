@@ -2,7 +2,6 @@ package main
 
 import (
 	"github.com/gotk3/gotk3/gtk"
-  //"github.com/FERBP3/ReproductorMP3/dao"
 )
 
 func NuevaVentanaEditaRola(view *View) {

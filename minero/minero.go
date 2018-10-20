@@ -1,8 +1,8 @@
 package main
 
 import(
-  "github.com/FERBP3/ReproductorMP3/modelos"
-  "github.com/FERBP3/ReproductorMP3/dao"
+  "github.com/FERBP3/BaseDeDatosMusical/modelos"
+  "github.com/FERBP3/BaseDeDatosMusical/dao"
   "github.com/bogem/id3v2"
   "path/filepath"
   "os/user"
@@ -63,7 +63,7 @@ func GetDirMusic() (string, error){
         log.Fatal(err)
     }
     rutaMusic := usr.HomeDir+MusicDir
-    fmt.Println(rutaMusic)/////////-------------------------////////
+    //fmt.Println(rutaMusic)
     return rutaMusic,err
 }
 
