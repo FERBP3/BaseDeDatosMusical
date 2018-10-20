@@ -5,7 +5,7 @@ import(
 	"github.com/gotk3/gotk3/gtk"
   "github.com/FERBP3/BaseDeDatosMusical/dao"
  	"github.com/FERBP3/BaseDeDatosMusical/modelos"
-	"fmt"
+	//"fmt"
 )
 
 func NuevoBotonNoGuardaCambios(etiqueta string, dialog *gtk.Dialog)  (*gtk.Button){
@@ -114,7 +114,7 @@ func NuevoButonGuardaCambiosAlbum(etiqueta string, dialog *gtk.Dialog, entradas 
 
 		err := view.ListStore.SetValue(iter, COLUMNA_ALBUM, name)
 		if err != nil {
-			fmt.Println(err)
+			//fmt.Println(err)
 		}
 		dialog.Destroy()
 		})
@@ -149,7 +149,7 @@ func NuevoButonGuardaCambiosRola(etiqueta string, dialog *gtk.Dialog, entradas *
 		err = view.ListStore.SetValue(iter, COLUMNA_GENERO, genre)
 
 		if err != nil {
-			fmt.Println(err)
+			//fmt.Println(err)
 		}
 		dialog.Destroy()
 		})
