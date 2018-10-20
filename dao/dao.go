@@ -5,7 +5,7 @@ import(
     _ "github.com/mattn/go-sqlite3"
 	"github.com/FERBP3/BaseDeDatosMusical/modelos"
     "github.com/FERBP3/BaseDeDatosMusical/Util"
-    "fmt"
+    //"fmt"
 )
 
 func InsertaPerformer(rola *modelos.Rola) (int64,error) {
@@ -95,13 +95,13 @@ func InsertaPersona(persona *modelos.Person, rola *modelos.Rola) {
     if err == sql.ErrNoRows {
         _, err = database.Exec(Util.InsertaPersona, persona.StageName, persona.RealName, persona.DateBirth, persona.DateDeath) 
         if err != nil {
-            fmt.Println(err)
+           // fmt.Println(err)
         }
     }
 
     _, err = database.Exec(Util.ActualizaInterprete, 0, rola.Interprete)
     if err != nil {
-    	fmt.Println(err)
+    	//fmt.Println(err)
     }
 }
 
@@ -117,13 +117,13 @@ func InsertaGrupo(grupo *modelos.Group, rola *modelos.Rola) {
     if err == sql.ErrNoRows {
         _, err = database.Exec(Util.InsertaGrupo, grupo.Name, grupo.StartDate, grupo.EndDate) 
         if err != nil {
-            fmt.Println(err)
+            //fmt.Println(err)
         }
     }
 
     _, err = database.Exec(Util.ActualizaInterprete, 1, rola.Interprete)
     if err != nil {
-    	fmt.Println(err)
+    	//fmt.Println(err)
     }
 }
 
@@ -133,7 +133,7 @@ func GetAllRolas() ([]*modelos.Rola) {
 
 	renglones, err := database.Query(Util.SeleccionaVistaRola)
 	if err != nil {
-		fmt.Println("No se pudo hacer la consulta: ", err)
+		//fmt.Println("No se pudo hacer la consulta: ", err)
 	}
 	var rolas []*modelos.Rola
 	var rola*modelos.Rola
@@ -147,7 +147,7 @@ func GetAllRolas() ([]*modelos.Rola) {
 	for renglones.Next() {
 		err = renglones.Scan(&title, &artist, &album, &genre, &track, &fechaGrabacion, &path)
 		if err != nil {
-        fmt.Println("Error al leer el renglon: ", err)
+        //fmt.Println("Error al leer el renglon: ", err)
         continue
 		}
 		rola = &modelos.Rola{
@@ -170,7 +170,7 @@ func SaveRola(rola *modelos.Rola) {
 
 	_, err := database.Exec(Util.ActualizaRola, rola.Titulo, rola.Track, rola.FechaGrabacion, rola.Genero, rola.Path)
 	if err != nil {
-		fmt.Println(err)
+		//fmt.Println(err)
 	}
 }
 
@@ -179,7 +179,7 @@ func SaveAlbum(rola *modelos.Rola) {
 	defer database.Close()
 	_, err := database.Exec(Util.ActualizaAlbum, rola.Album, rola.FechaGrabacion, rola.Path)
 	if err != nil {
-		fmt.Println(err)
+		//fmt.Println(err)
 	}
 }
 
@@ -191,7 +191,7 @@ func GetTypePerformer(rola *modelos.Rola) (string) {
 	renglon := database.QueryRow(Util.SeleccionaTipoPerformer, rola.Path)
 	err := renglon.Scan(&tipo)
 	if err != nil {
-		fmt.Println(err)
+		//fmt.Println(err)
 	}
 	return tipo
 
@@ -209,9 +209,9 @@ func GetPerson(rola *modelos.Rola) (person *modelos.Person){
 	renglon := database.QueryRow(Util.SeleccionaPersonaFromStageName, rola.Interprete)
 	err := renglon.Scan(&stageName, &realName, &dateBirth, &dateDeath)
 	if err != nil {
-		fmt.Println(err)
+		//fmt.Println(err)
 	}
-	fmt.Println(rola.Interprete)
+	//fmt.Println(rola.Interprete)
 
 	person = &modelos.Person{
 		StageName: stageName,
@@ -233,7 +233,7 @@ func GetGroup(rola *modelos.Rola) (group *modelos.Group) {
 	renglon := database.QueryRow(Util.SeleccionaGrupoFromName, rola.Interprete)
 	err := renglon.Scan(&name, &start, &end)
 	if err != nil {
-		fmt.Println(err)
+		//fmt.Println(err)
 	}
 
 	grupo := &modelos.Group{
@@ -250,7 +250,7 @@ func Ejecuta(consulta string) ([]*modelos.Rola) {
 
     renglones, err := database.Query(consulta)
     if err != nil {
-        fmt.Println("No se pudo hacer la consulta: ", err)
+        //fmt.Println("No se pudo hacer la consulta: ", err)
     }
     var rolas []*modelos.Rola
     var rola *modelos.Rola
@@ -264,7 +264,7 @@ func Ejecuta(consulta string) ([]*modelos.Rola) {
     for renglones.Next() {
         err = renglones.Scan(&title, &artist, &album, &genre, &track, &fechaGrabacion, &path)
         if err != nil {
-        fmt.Println("Error al leer el renglon: ", err)
+        //fmt.Println("Error al leer el renglon: ", err)
         continue
         }
         rola = &modelos.Rola{
