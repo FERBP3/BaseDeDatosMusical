@@ -43,7 +43,20 @@ Después lo ejecutamos (de igual forma estando en $GOPATH):
 ```
 $./bin/vista
 ```
-
+### Consultas
+Las consultas funcionan de la siguiente manera:
+Para buscar por título se escribe:
+```
+T:Black Diamond
+```
+seguido de la cadena que se quiere buscar, en ese caso de buscó el título Black Diamond.
+Los mismo para buscar por Álbum o por Interprete:
+```
+A:Imaginaerum
+I:Nightwish
+```
+Sólo puede buscar una categoría cada vez.
+Cualquier cadena que no reconozca automáticamente mostrará todas las rolas.
 ## Autor
 * Brigido Pablo José Fernando
 * 314146171
