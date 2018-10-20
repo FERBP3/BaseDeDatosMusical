@@ -33,14 +33,15 @@ func onActivate(aplicacion *gtk.Application) {
 	TreeView, ListStore := creaTreeView()
 	ventanaScroll := creaVentanaScroll()
 	botonMenu := creaBotonMenu()
-	barraBusqueda := creaBarraBusqueda()
 
-	rolas := dao.GetRolas()
+	rolas := dao.GetAllRolas()
 	for _,rola := range rolas {
 		agregaRenglon(ListStore,rola.Titulo,rola.Interprete, rola.Album, rola.Genero)
 	}
 
 	view := &View{TreeView: TreeView, ListStore: ListStore, Rolas: rolas}
+	barraBusqueda := creaBarraBusqueda(view)
+
 
 	editaRola := glib.SimpleActionNew("editaRola", nil)
 	editaRola.Connect("activate", func() {

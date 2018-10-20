@@ -128,8 +128,7 @@ func InsertaGrupo(grupo *modelos.Group, rola *modelos.Rola) {
 
 }
 
-
-func GetRolas() ([]*modelos.Rola) {
+func GetAllRolas() ([]*modelos.Rola) {
 	database := get()
 	defer database.Close()
 
@@ -244,4 +243,44 @@ func GetGroup(rola *modelos.Rola) (group *modelos.Group) {
 		EndDate: end,
 	}
 	return grupo
+}
+
+func Ejecuta(consulta string) ([]*modelos.Rola) {
+    database := get()
+    defer database.Close()
+
+    renglones, err := database.Query(consulta)
+    if err != nil {
+        fmt.Println("No se pudo hacer la consulta: ", err)
+    }
+    var rolas []*modelos.Rola
+    var rola *modelos.Rola
+    var title string 
+    var artist string
+    var album string
+    var genre string
+    var track string
+    var fechaGrabacion string
+    var path string
+    for renglones.Next() {
+        err = renglones.Scan(&title, &artist, &album, &genre, &track, &fechaGrabacion, &path)
+        if err != nil {
+        fmt.Println("Error al leer el renglon: ", err)
+        continue
+        }
+        rola = &modelos.Rola{
+            Titulo: title,
+            Interprete: artist,
+            Album: album,
+            Genero: genre,
+            Track: track,
+            FechaGrabacion: fechaGrabacion,
+            Path: path,
+        }
+        rolas = append(rolas, rola)
+    }
+    return rolas
+
+    //var rolas []*modelos.Rola
+    //return rolas
 }

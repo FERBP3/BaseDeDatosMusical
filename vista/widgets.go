@@ -4,6 +4,8 @@ import (
 	"log"
 	"github.com/gotk3/gotk3/gtk"
 	"github.com/gotk3/gotk3/glib"
+    "github.com/FERBP3/BaseDeDatosMusical/compilador"
+     "github.com/FERBP3/BaseDeDatosMusical/dao"
 	"fmt"
 )
 
@@ -84,13 +86,37 @@ func creaModeloMenu() (*glib.Menu) {
 	return menu
 }
 
-func creaBarraBusqueda() (*gtk.SearchEntry) {
+func creaBarraBusqueda(view *View) (*gtk.SearchEntry) {
 	barraBusqueda, err := gtk.SearchEntryNew()
 	if err != nil {
 		log.Fatal("No se pudo crear la barra de búsqueda: ",err)
 	}
 	barraBusqueda.Connect("activate", func() {
-		fmt.Println(barraBusqueda.GetText())
+		entrada, _ := barraBusqueda.GetText() 
+		salida := compilador.Compila(entrada)
+
+		/// aqui borra todo el list store///
+		iter, ok := view.ListStore.GetIterFirst()
+		for ok {
+			ok = view.ListStore.Remove(iter)
+		}
+
+		if salida == "" {
+			nuevasRolas := dao.GetAllRolas()
+			view.Rolas = nuevasRolas	
+			for _,rola := range nuevasRolas {
+				agregaRenglon(view.ListStore,rola.Titulo,rola.Interprete, rola.Album, rola.Genero)
+			}
+		} else {
+		nuevasRolas := dao.Ejecuta(salida)
+		view.Rolas = nuevasRolas
+
+		/// aqui borra todo el list store///
+		for _,rola := range nuevasRolas {
+			agregaRenglon(view.ListStore,rola.Titulo,rola.Interprete, rola.Album, rola.Genero)
+		}
+		}
+		//fmt.Println(salida)
 	})
 	return barraBusqueda
 }
